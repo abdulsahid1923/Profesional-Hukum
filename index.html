@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Profesional | Abdul Sahid, S.H.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- VARIABEL WARNA (TERANG & GELAP) --- */
+        :root {
+            --primary-color: #0b1c3d; /* Navy Blue - Otoritas & Kepercayaan */
+            --secondary-color: #c49a45; /* Emas Redup - Kualitas & Elegan */
+            --bg-color: #fcfcfc;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --card-bg: #ffffff;
+            --border-color: #e0e0e0;
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #1a2a4c;
+            --secondary-color: #d4af37;
+            --bg-color: #121212;
+            --text-main: #f0f0f0;
+            --text-muted: #aaaaaa;
+            --card-bg: #1e1e1e;
+            --border-color: #333333;
+        }
+
+        /* --- RESET & GLOBAL PENGATURAN --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .section { padding: 80px 0; }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 15px auto 0;
+        }
+
+        /* --- NAVIGASI --- */
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            padding: 0 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { font-weight: 600; font-size: 0.9rem; }
+        .nav-links a:hover { color: var(--secondary-color); }
+        #theme-toggle {
+            background: none; border: none; cursor: pointer;
+            font-size: 1.2rem; color: var(--text-main);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--bg-color) 0%, var(--border-color) 100%);
+            padding-top: 70px;
+        }
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        .hero-text { flex: 1; }
+        .hero-text h1 { font-size: 3.5rem; color: var(--primary-color); line-height: 1.2; margin-bottom: 10px; }
+        .hero-text h2 { font-size: 1.5rem; color: var(--secondary-color); font-family: 'Inter', sans-serif; font-weight: 400; margin-bottom: 20px; }
+        .hero-text p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; }
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 4px;
+            font-weight: 600;
+            border: 2px solid var(--primary-color);
+        }
+        .btn:hover { background-color: transparent; color: var(--primary-color); }
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            margin-left: 10px;
+        }
+        .btn-outline:hover { background-color: var(--primary-color); color: #fff; }
+        .hero-image {
+            flex: 1;
+            text-align: right;
+        }
+        .hero-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* --- TENTANG SAYA --- */
+        .about-grid { display: flex; gap: 40px; align-items: flex-start; }
+        .about-text { flex: 2; }
+        .about-stats {
+            flex: 1;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+        .stat-item { margin-bottom: 20px; }
+        .stat-item h4 { font-size: 1rem; color: var(--secondary-color); font-family: 'Inter', sans-serif;}
+        .stat-item p { font-weight: 600; }
+
+        /* --- PENGALAMAN (TIMELINE) --- */
+        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+        .timeline::before {
+            content: ''; position: absolute;
+            width: 2px; background-color: var(--border-color);
+            top: 0; bottom: 0; left: 20px;
+        }
+        .timeline-item {
+            position: relative; margin-bottom: 40px; padding-left: 60px;
+        }
+        .timeline-icon {
+            position: absolute; left: 6px; top: 0;
+            width: 30px; height: 30px;
+            background-color: var(--primary-color);
+            border-radius: 50%; color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem;
+        }
+        .timeline-content {
+            background-color: var(--card-bg);
+            padding: 20px; border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+        .timeline-content h3 { color: var(--primary-color); margin-bottom: 5px; }
+        .timeline-date { color: var(--secondary-color); font-size: 0.9rem; margin-bottom: 15px; display: block; font-weight: 600;}
+
+        /* --- PORTOFOLIO KASUS --- */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .tag {
+            display: inline-block; padding: 4px 10px;
+            background-color: rgba(196, 154, 69, 0.1);
+            color: var(--secondary-color);
+            font-size: 0.8rem; border-radius: 20px; margin-bottom: 15px; font-weight: 600;
+        }
+        .card h3 { color: var(--primary-color); margin-bottom: 10px; font-size: 1.3rem;}
+        .card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 15px;}
+        .disclaimer { text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: 30px; font-style: italic;}
+
+        /* --- SERTIFIKAT --- */
+        .certificate-list {
+            margin-top: 20px;
+        }
+        .certificate-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 10px;
+        }
+        .certificate-item h4 {
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        .certificate-item span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- KONTAK --- */
+        .contact-wrap {
+            display: flex; gap: 50px; justify-content: center;
+            background-color: var(--primary-color);
+            color: #fff; padding: 60px; border-radius: 8px;
+        }
+        .contact-info h2 { color: var(--secondary-color); margin-bottom: 20px; }
+        .contact-info p { margin-bottom: 15px; display: flex; align-items: center; gap: 10px;}
+        .contact-info i { color: var(--secondary-color); }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center; padding: 30px;
+            background-color: var(--bg-color);
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem; color: var(--text-muted);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content { flex-direction: column-reverse; text-align: center; }
+            .hero-image { text-align: center; }
+            .about-grid { flex-direction: column; }
+            .nav-links { display: none; } /* Sederhana untuk mobile */
+            .contact-wrap { flex-direction: column; padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">A.S. Law</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Beranda</a></li>
+                <li><a href="#about">Profil</a></li>
+                <li><a href="#experience">Pengalaman</a></li>
+                <li><a href="#cases">Portofolio</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            <button id="theme-toggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+        </nav>
+    </header>
+
+<section id="hero" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Abdul Sahid, S.H.</h1>
+                <h2>Profesional Hukum & Calon Advokat</h2>
+                <p>Lulusan Sarjana Hukum dengan dedikasi tinggi pada etika profesi, penyelesaian sengketa, dan pelayanan bantuan hukum. Teruji dalam penanganan perkara litigasi dan non-litigasi.</p>
+                <div>
+                    <a href="#cases" class="btn">Lihat Portofolio</a>
+                    <a href="#contact" class="btn btn-outline">Hubungi Saya</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="foto-profil.jpeg" alt="Pas Foto Abdul Sahid">
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Profil Profesional</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p style="margin-bottom: 15px;">Saya adalah Sarjana Hukum dari Universitas Islam Makassar dengan pengalaman profesional di bidang advokasi, administrasi hukum, dan kepemimpinan organisasi. Sejak masa perkuliahan hingga saat ini, saya aktif terlibat dalam kegiatan bantuan hukum dan organisasi profesi di tingkat lokal maupun nasional.</p>
+                    <p style="margin-bottom: 15px;">Saya telah <strong>lulus Ujian Profesi Advokat (UPA) PERADI</strong> pada periode pertama tahun 2026. Saya terbiasa bekerja secara sistematis, menjunjung tinggi etika profesi, serta memiliki kemampuan bekerja secara mandiri maupun dalam tim.</p>
+                    <p>Fokus praktik hukum saya meliputi pendampingan klien, penelitian hukum (legal research), penyusunan dokumen (legal drafting), serta mediasi sengketa.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <h4>Pendidikan</h4>
+                        <p>S1 Ilmu Hukum (IPK 3.84)<br>Universitas Islam Makassar</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Sertifikasi</h4>
+                        <p>PKPA DPN PERADI (2024)<br>Lulus UPA PERADI (2026)</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Keahlian Inti</h4>
+                        <p>Litigasi & Non-Litigasi, Legal Drafting, Administrasi Perkara, Mediasi.</p>
+                    </div>
+                </div>
+            </div>
+
+           <div class="certificate-list">
+                <h3>Sertifikat Kompetensi</h3>
+                <div class="certificate-item">
+                    <div>
+                        <h4>Sertifikat PKPA DPN PERADI</h4>
+                        <span>Tahun 2024</span>
+                    </div>
+                    <a href="Sertifikat PKPA DPN.pdf#toolbar=0&navpanes=0" class="btn btn-outline" target="_blank">
+                        <i class="fas fa-eye"></i> Lihat Sertifikat
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section" style="background-color: var(--bg-color); filter: brightness(0.97);">
+        <div class="container">
+            <h2 class="section-title">Riwayat Pengalaman</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-gavel"></i></div>
+                    <div class="timeline-content">
+                        <h3>Staf Administrasi Mediator Non-Hakim</h3>
+                        <span class="timeline-date">MNH DPC PERADI Jakarta Barat | 2025 - 2026</span>
+                        <p>Bertugas di Pengadilan Negeri Jakarta Barat. Mengelola administrasi perkara, mendampingi proses mediasi, serta berkoordinasi dengan mediator, para pihak, dan aparatur pengadilan.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="timeline-content">
+                        <h3>Magang Advokat (Advocate Intern)</h3>
+                        <span class="timeline-date">Pusat Bantuan Hukum (PBH) PERADI Jakarta Barat</span>
+                        <p>Terlibat dalam penanganan perkara litigasi dan non-litigasi. Menyusun dan menelaah dokumen hukum, membuat ringkasan perkara, melakukan riset peraturan, dan mendampingi konsultasi klien (Bantuan Hukum Cuma-Cuma).</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-users"></i></div>
+                    <div class="timeline-content">
+                        <h3>Wakil Direktur Lembaga Bantuan Hukum</h3>
+                        <span class="timeline-date">PP BEM PTNU Se-Nusantara | 2025 - 2027</span>
+                        <p>Memimpin arah strategis kebijakan bantuan hukum kelembagaan mahasiswa di tingkat nasional, melakukan advokasi publik, dan edukasi hukum.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="cases" class="section">
+        <div class="container">
+            <h2 class="section-title">Portofolio Penanganan Perkara</h2>
+            <div class="grid-cards">
+                
+                <div class="card">
+                    <div class="card-image">
+                        [Foto Kegiatan]
+                    </div>
+                    <span class="tag">Perdata / Mediasi</span>
+                    <h3>Sengketa Wanprestasi Kontrak Bisnis</h3>
+                    <p><strong>Peran:</strong> Asisten Advokat / Pendamping</p>
+                    <p>Membantu penyusunan Legal Opinion (Pendapat Hukum) dan draf jawaban gugatan. Terlibat aktif dalam mempersiapkan dokumen administrasi pada tahap mediasi di Pengadilan Negeri Jakarta Barat.</p>
+                    <a href="PORTOFOLIO PROFESIONAL ABDUL SAHID ( THEMIS INDONESIA LAW FIRM ).pdf" class="btn btn-outline" target="_blank"><i class="fas fa-file-alt"></i> Detail Perkara</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        [Foto Kegiatan]
+                    </div>
+                    <span class="tag">Pidana</span>
+                    <h3>Pendampingan Hukum Pro Bono</h3>
+                    <p><strong>Peran:</strong> Tim Magang PBH PERADI</p>
+                    <p>Melakukan wawancara pencari keadilan, menyusun kronologi perkara, dan melakukan riset yurisprudensi terkait tindak pidana umum untuk bahan pembelaan (Pledoi) oleh Advokat senior.</p>
+                    <a href="PORTOFOLIO PROFESIONAL ABDUL SAHID ( THEMIS INDONESIA LAW FIRM ).pdf" class="btn btn-outline" target="_blank"><i class="fas fa-file-alt"></i> Detail Perkara</a>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        [Foto Kegiatan]
+                    </div>
+                    <span class="tag">Administrasi Hukum</span>
+                    <h3>Pengelolaan Berkas Mediasi Non-Hakim</h3>
+                    <p><strong>Peran:</strong> Staf Administrasi</p>
+                    <p>Mengoordinasikan lebih dari 50+ jadwal mediasi sengketa keperdataan, memastikan kelengkapan resume mediasi, dan menjaga kerahasiaan dokumen para pihak sesuai standar operasional pengadilan.</p>
+                    <a href="PORTOFOLIO PROFESIONAL ABDUL SAHID ( THEMIS INDONESIA LAW FIRM ).pdf" class="btn btn-outline" target="_blank"><i class="fas fa-file-alt"></i> Detail Perkara</a>
+                </div>
+
+            </div>
+            <p class="disclaimer">*Catatan: Detail pihak yang berperkara dan nomor putusan dirahasiakan untuk mematuhi Kode Etik Advokat mengenai kerahasiaan klien.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="section" style="background-color: var(--bg-color);">
+        <div class="container">
+            <div class="contact-wrap">
+                <div class="contact-info" style="flex: 1;">
+                    <h2 class="serif">Mari Berdiskusi</h2>
+                    <p>Saya terbuka untuk peluang profesional, posisi Junior Lawyer, atau kolaborasi hukum lainnya. Silakan hubungi saya melalui saluran di bawah ini.</p>
+                    <br>
+                    <p><i class="fas fa-phone"></i> +62 812-4339-9917</p>
+                    <p><i class="fas fa-envelope"></i> abdsahidmsf99@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Palmerah, Jakarta Barat, DKI Jakarta</p>
+                    <br>
+                    <a href="CV ABDUL SAHID, S.H..pdf" class="btn btn-outline" style="border-color: var(--secondary-color); color: var(--secondary-color);" target="_blank">
+                        <i class="fas fa-download"></i> Unduh CV (PDF)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Abdul Sahid, S.H. | Disusun sebagai representasi komitmen profesional di bidang hukum.</p>
+    </footer>
+
+    <script>
+        // Fitur Dark Mode Toggle
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        const icon = themeToggleBtn.querySelector('i');
+
+        // Cek preferensi user di localStorage
+        if(localStorage.getItem('theme') === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            icon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                icon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            }
+        });
+
+        // Efek Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Efek Navigasi Sticky dengan Shadow saat Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = "0 4px 15px rgba(0,0,0,0.1)";
+            } else {
+                header.style.boxShadow = "0 2px 10px rgba(0,0,0,0.05)";
+            }
+        });
+    </script>
+</body>
+</html>
